@@ -26,7 +26,7 @@
         "size": 40
       },
       "push": {
-        "quantity": 4
+        "quantity": 1
       },
       "repulse": {
         "distance": 200,
@@ -61,10 +61,10 @@
         "enable": true,
         "value_area": 800
       },
-      "value": 80
+      "value": 15
     },
     "opacity": {
-      "value": 0.5
+      "value": 0.1
     },
     "shape": {
       "type": "circle"

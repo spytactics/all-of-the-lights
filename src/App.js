@@ -1,37 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Particles from "react-tsparticles";
-import logo from './logo.svg';
 import './App.css';
 import particlesOptions from "./particles.json";
+import DarkModeToggle from "react-dark-mode-toggle";
+
+// create mqtt client
+var mqtt    = require('mqtt');
+var options = {
+    username: "709130521220",
+	password: "aio_WQTu75eQGGEMApVuJIsWUq51c8xJ",
+    clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+    keepalive: 60,
+    reconnectPeriod: 1000,
+    clean: true,
+    port: 443
+
+};
+var client  = mqtt.connect('ws://io.adafruit.com', options);
+
+// init page
+console.log("Lights on")
 
 function App() {
+    const [isDarkMode, setIsDarkMode] = useState(() => false);
+
+    const toggleClass = () => {
+        setIsDarkMode(!isDarkMode);
+        if (isDarkMode) {
+            console.log("Lights on")
+            client.publish("709130521220/feeds/bl.brightness", "45")
+        } else {
+            console.log("Lights off")
+            client.publish("709130521220/feeds/bl.brightness", "0")
+        }
+      };
     return (
         <div className="App">
             <Particles options={particlesOptions}/>
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <p>
-                    Edit <code>src/particles.json</code> to customize Particles, then save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-                <a
-                    className="App-link"
-                    href="https://particles.matteobruni.it"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    See Particles samples
-                </a>
+                <div>Lights On/Off</div>
+                <DarkModeToggle header="test"
+                
+                    onChange={toggleClass}
+                    checked={isDarkMode}
+                    size={150}
+                />
             </header>
         </div>
     );
