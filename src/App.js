@@ -22,10 +22,22 @@ var client  = mqtt.connect('ws://io.adafruit.com', options);
 
 // init page
 console.log("Lights on")
-client.publish("709130521220/feeds/bl.brightness", "45")
+client.publish("709130521220/feeds/bl.brightness", "120")
+
+
+const divStyle = {
+    marginLeft: '10px',
+  };
+
 
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(() => false);
+    const [colorHexCode, setColorHexCode] = useState('#862d2d');
+
+    const toggleColor = (color) => {
+        setColorHexCode(color.hex)
+        client.publish("709130521220/feeds/bl.color", color.hex)
+    }
 
     const toggleClass = () => {
         setIsDarkMode(!isDarkMode);
@@ -38,24 +50,23 @@ function App() {
         }
       };
     
-    const handleChangeComplete = (color) => {
-        console.log(parseInt(color.hex, 16))
-      };
-    
     return (
-        <div className="App">
-            <SliderPicker
-                onChangeComplete={handleChangeComplete}
-            />
+        <div style={divStyle} className="App">
             <Particles options={particlesOptions}/>
-            <container className="body-header">
-            </container>
             <container className="App-header">
                 <div>Lights On/Off</div>
                 <DarkModeToggle
                     onChange={toggleClass}
                     checked={isDarkMode}
                     size={150}
+                />
+            </container>
+            <container className="body-header">
+            <div></div>
+                <SliderPicker
+                    color={colorHexCode}
+                    onChangeComplete={toggleColor}
+                    style={({ marginLeft: '0.8rem' })}
                 />
             </container>
         </div>
