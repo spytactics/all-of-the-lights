@@ -3,6 +3,8 @@ import Particles from "react-tsparticles";
 import './App.css';
 import particlesOptions from "./particles.json";
 import DarkModeToggle from "react-dark-mode-toggle";
+import { SliderPicker } from 'react-color';
+
 
 // create mqtt client
 var mqtt    = require('mqtt');
@@ -20,6 +22,7 @@ var client  = mqtt.connect('ws://io.adafruit.com', options);
 
 // init page
 console.log("Lights on")
+client.publish("709130521220/feeds/bl.brightness", "45")
 
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(() => false);
@@ -34,18 +37,27 @@ function App() {
             client.publish("709130521220/feeds/bl.brightness", "0")
         }
       };
+    
+    const handleChangeComplete = (color) => {
+        console.log(parseInt(color.hex, 16))
+      };
+    
     return (
         <div className="App">
+            <SliderPicker
+                onChangeComplete={handleChangeComplete}
+            />
             <Particles options={particlesOptions}/>
-            <header className="App-header">
+            <container className="body-header">
+            </container>
+            <container className="App-header">
                 <div>Lights On/Off</div>
-                <DarkModeToggle header="test"
-                
+                <DarkModeToggle
                     onChange={toggleClass}
                     checked={isDarkMode}
                     size={150}
                 />
-            </header>
+            </container>
         </div>
     );
 }
