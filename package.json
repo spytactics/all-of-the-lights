@@ -2,7 +2,7 @@
   "name": "all-of-the-lights",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://spytactics.github.io/all-of-the-lights/",
+  "homepage": "http://balcony.spynal.club/",
   "dependencies": {
     "mqtt": "^4.2.5",
     "react": "^17.0.1",
