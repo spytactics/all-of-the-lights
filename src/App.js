@@ -11,8 +11,6 @@ import 'react-dropdown/style.css';
 export const MQTT_KEY = process.env.REACT_APP_MQTT_KEY;
 export const MQTT_USER = process.env.REACT_APP_MQTT_USER;
 
-console.log(MQTT_USER)
-
 // create mqtt client
 var mqtt    = require('mqtt');
 var options = {
@@ -32,7 +30,7 @@ document.body.classList.add("no-sroll")
 
 // init page
 console.log("Lights on")
-client.publish("${MQTT_USER}/feeds/bl.brightness", "120")
+client.publish(`${MQTT_USER}/feeds/bl.brightness`, "120")
 
 
 const divStyle = {
@@ -48,7 +46,7 @@ function App() {
 
     const toggleColor = (color) => {
         setColorHexCode(color.hex)
-        client.publish("${MQTT_USER}/feeds/bl.color", color.hex)
+        client.publish(`${MQTT_USER}/feeds/bl.color`, color.hex)
     }
 
     const options = [
@@ -112,17 +110,17 @@ function App() {
 
 
     const selectMode = (mode) => {
-        client.publish("${MQTT_USER}/feeds/bl.mode", mode.value)
+        client.publish(`${MQTT_USER}/feeds/bl.mode`, mode.value)
     }
 
     const toggleClass = () => {
         setIsDarkMode(!isDarkMode);
         if (isDarkMode) {
             console.log("Lights on")
-            client.publish("${MQTT_USER}feeds/bl.brightness", "45")
+            client.publish(`${MQTT_USER}feeds/bl.brightness`, "45")
         } else {
             console.log("Lights off")
-            client.publish("${MQTT_USER}/feeds/bl.brightness", "0")
+            client.publish(`${MQTT_USER}/feeds/bl.brightness`, "0")
         }
       };
     
