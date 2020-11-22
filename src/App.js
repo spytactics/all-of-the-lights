@@ -8,8 +8,10 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 // global var
-const MQTT_KEY =  process.env.MQTT_KEY;
-const MQTT_USER = process.env.MQTT_USERY;
+export const MQTT_KEY = process.env.REACT_APP_MQTT_KEY;
+export const MQTT_USER = process.env.REACT_APP_MQTT_USER;
+
+console.log(MQTT_USER)
 // create mqtt client
 var mqtt    = require('mqtt');
 var options = {
