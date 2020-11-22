@@ -30,7 +30,7 @@ document.body.classList.add("no-sroll")
 
 // init page
 console.log("Lights on")
-client.publish("709130521220/feeds/bl.brightness", "120")
+client.publish("${MQTT_USER}/feeds/bl.brightness", "120")
 
 
 const divStyle = {
@@ -46,7 +46,7 @@ function App() {
 
     const toggleColor = (color) => {
         setColorHexCode(color.hex)
-        client.publish("709130521220/feeds/bl.color", color.hex)
+        client.publish("${MQTT_USER}/feeds/bl.color", color.hex)
     }
 
     const options = [
@@ -110,17 +110,17 @@ function App() {
 
 
     const selectMode = (mode) => {
-        client.publish("709130521220/feeds/bl.mode", mode.value)
+        client.publish("${MQTT_USER}/feeds/bl.mode", mode.value)
     }
 
     const toggleClass = () => {
         setIsDarkMode(!isDarkMode);
         if (isDarkMode) {
             console.log("Lights on")
-            client.publish("709130521220/feeds/bl.brightness", "45")
+            client.publish("${MQTT_USER}feeds/bl.brightness", "45")
         } else {
             console.log("Lights off")
-            client.publish("709130521220/feeds/bl.brightness", "0")
+            client.publish("${MQTT_USER}/feeds/bl.brightness", "0")
         }
       };
     
