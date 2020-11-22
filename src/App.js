@@ -35,7 +35,10 @@ client.publish(`${MQTT_USER}/feeds/bl.brightness`, "120")
 
 const divStyle = {
     marginLeft: '0px',
-  };
+};
+
+
+
 
 
 function App() {
@@ -44,6 +47,7 @@ function App() {
     //const [selected, setSelected] = useState([]);
 
     const toggleColor = (color) => {
+        document.querySelector("#tsparticles > canvas").style.backgroundColor = color.hex
         setColorHexCode(color.hex)
         client.publish(`${MQTT_USER}/feeds/bl.color`, color.hex)
     }
@@ -129,7 +133,7 @@ function App() {
             <container>
                 <Dropdown options={options} onChange={selectMode} value={defaultOption} placeholder="Select an option" />
             </container>
-            <container className="App-header" id="scroll-container">
+            <container className="App-header">
                 <div>Lights On/Off</div>
                 <DarkModeToggle
                     onChange={toggleClass}
@@ -137,15 +141,13 @@ function App() {
                     size={150}
                 />
             </container>
-            <container className="body-header">
+            <container>
             <div></div>
                 <SliderPicker
                     color={colorHexCode}
                     onChangeComplete={toggleColor}
-                    style={({ marginLeft: '0.8rem' })}
                 />
             </container>
-            <container></container>
         </div>
     );
 }
