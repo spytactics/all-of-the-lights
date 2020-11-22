@@ -11,7 +11,6 @@ import 'react-dropdown/style.css';
 export const MQTT_KEY = process.env.REACT_APP_MQTT_KEY;
 export const MQTT_USER = process.env.REACT_APP_MQTT_USER;
 
-console.log(MQTT_USER)
 // create mqtt client
 var mqtt    = require('mqtt');
 var options = {
