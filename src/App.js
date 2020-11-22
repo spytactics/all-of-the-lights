@@ -34,9 +34,8 @@ client.publish(`${MQTT_USER}/feeds/bl.brightness`, "120")
 
 
 const divStyle = {
-    marginLeft: '10px',
+    marginLeft: '0px',
   };
-
 
 
 function App() {
