@@ -7,11 +7,14 @@ import { SliderPicker } from 'react-color';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
+// global var
+const MQTT_KEY =  process.env.MQTT_KEY;
+const MQTT_USER = process.env.MQTT_USERY;
 // create mqtt client
 var mqtt    = require('mqtt');
 var options = {
-    username: "709130521220",
-	password: "aio_WQTu75eQGGEMApVuJIsWUq51c8xJ",
+    username: MQTT_USER,
+	password: MQTT_KEY,
     clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
     keepalive: 60,
     reconnectPeriod: 1000,
