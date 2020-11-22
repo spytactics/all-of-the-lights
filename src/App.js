@@ -18,7 +18,7 @@ var options = {
 	password: MQTT_KEY,
     clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
     keepalive: 60,
-    reconnectPeriod: 1000,
+    reconnectPeriod: 5000,
     clean: true,
     port: 443
 
@@ -117,7 +117,7 @@ function App() {
         setIsDarkMode(!isDarkMode);
         if (isDarkMode) {
             console.log("Lights on")
-            client.publish(`${MQTT_USER}feeds/bl.brightness`, "45")
+            client.publish(`${MQTT_USER}/feeds/bl.brightness`, "45")
         } else {
             console.log("Lights off")
             client.publish(`${MQTT_USER}/feeds/bl.brightness`, "0")
