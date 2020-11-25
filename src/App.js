@@ -6,16 +6,17 @@ import DarkModeToggle from "react-dark-mode-toggle";
 import { SliderPicker } from 'react-color';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import CryptoJS from "react-native-crypto-js";
 
 // global var
-export const MQTT_KEY = process.env.REACT_APP_MQTT_KEY;
-export const MQTT_USER = process.env.REACT_APP_MQTT_USER;
+export const MQTT_KEY = CryptoJS.AES.decrypt(process.env.REACT_APP_MQTT_KEY, process.env.REACT_APP_SALT);
+export const MQTT_USER = CryptoJS.AES.decrypt(process.env.REACT_APP_MQTT_USER, process.env.REACT_APP_SALT);
 
 // create mqtt client
 var mqtt    = require('mqtt');
 var options = {
-    username: MQTT_USER,
-	password: MQTT_KEY,
+    username: MQTT_USER.toString(CryptoJS.enc.Utf8),
+	password: MQTT_KEY.toString(CryptoJS.enc.Utf8),
     clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
     keepalive: 60,
     reconnectPeriod: 5000,
