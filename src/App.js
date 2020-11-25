@@ -32,15 +32,12 @@ document.body.classList.add("no-sroll")
 
 // init page
 console.log("Lights on")
-client.publish(`${MQTT_USER}/feeds/bl.brightness`, "120")
+client.publish(`${MQTT_USER}/feeds/bl.brightness`, "150")
 
 
 const divStyle = {
     marginLeft: '0px',
 };
-
-
-
 
 
 function App() {
@@ -122,7 +119,7 @@ function App() {
         setIsDarkMode(!isDarkMode);
         if (isDarkMode) {
             console.log("Lights on")
-            client.publish(`${MQTT_USER}/feeds/bl.brightness`, "45")
+            client.publish(`${MQTT_USER}/feeds/bl.brightness`, "150")
         } else {
             console.log("Lights off")
             client.publish(`${MQTT_USER}/feeds/bl.brightness`, "0")
