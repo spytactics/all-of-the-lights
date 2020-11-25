@@ -129,6 +129,9 @@ function App() {
     return (
         <div style={divStyle} className="App">
             <Particles options={particlesOptions}/>
+	    <head>
+	    	<title>Balcony Lights</title>
+	    </head>
             <container>
                 <Dropdown options={options} onChange={selectMode} value={defaultOption} placeholder="Select an option" />
             </container>
