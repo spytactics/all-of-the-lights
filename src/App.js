@@ -9,8 +9,9 @@ import 'react-dropdown/style.css';
 import CryptoJS from "react-native-crypto-js";
 
 // global var
-export const MQTT_KEY = CryptoJS.AES.decrypt(process.env.REACT_APP_MQTT_KEY, process.env.REACT_APP_SALT);
-export const MQTT_USER = CryptoJS.AES.decrypt(process.env.REACT_APP_MQTT_USER, process.env.REACT_APP_SALT);
+export const MQTT_KEY = CryptoJS.AES.decrypt(process.env.REACT_APP_MQTT_KEY, process.env.REACT_APP_SALT).toString(CryptoJS.enc.Utf8);
+export const MQTT_USER = CryptoJS.AES.decrypt(process.env.REACT_APP_MQTT_USER, process.env.REACT_APP_SALT).toString(CryptoJS.enc.Utf8);
+
 
 // create mqtt client
 var mqtt    = require('mqtt');
