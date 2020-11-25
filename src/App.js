@@ -16,16 +16,16 @@ export const MQTT_USER = CryptoJS.AES.decrypt(process.env.REACT_APP_MQTT_USER, p
 // create mqtt client
 var mqtt    = require('mqtt');
 var options = {
-    username: MQTT_USER.toString(CryptoJS.enc.Utf8),
-	password: MQTT_KEY.toString(CryptoJS.enc.Utf8),
+    username: MQTT_USER,
+	password: MQTT_KEY,
     clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
     keepalive: 60,
-    reconnectPeriod: 5000,
+    reconnectPeriod: 1000,
     clean: true,
     port: 443
 
 };
-var client  = mqtt.connect('ws://io.adafruit.com', options);
+var client  = mqtt.connect('wss://io.adafruit.com', options);
 
 // disable page scroll
 document.body.classList.add("no-sroll")
